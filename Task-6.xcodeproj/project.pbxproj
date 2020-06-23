@@ -16,6 +16,17 @@
 		AD344FBA249F9BAC00E839DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FB9249F9BAC00E839DC /* main.m */; };
 		AD344FC4249F9BAD00E839DC /* Task_6Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FC3249F9BAD00E839DC /* Task_6Tests.m */; };
 		AD344FCF249F9BAD00E839DC /* Task_6UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FCE249F9BAD00E839DC /* Task_6UITests.m */; };
+		AD344FDE249F9BEE00E839DC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FDD249F9BEE00E839DC /* HomeViewController.m */; };
+		AD344FE1249F9C2300E839DC /* UIColor+HexToUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FE0249F9C2300E839DC /* UIColor+HexToUIColor.m */; };
+		AD344FE4249F9C9800E839DC /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FE3249F9C9800E839DC /* NavigationController.m */; };
+		AD344FE7249F9D7100E839DC /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FE6249F9D7100E839DC /* TabBarViewController.m */; };
+		AD344FEA249F9F8100E839DC /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FE9249F9F8100E839DC /* InfoViewController.m */; };
+		AD344FED249F9F9400E839DC /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FEC249F9F9400E839DC /* GalleryViewController.m */; };
+		AD344FF0249F9FA700E839DC /* RSSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FEF249F9FA700E839DC /* RSSchoolViewController.m */; };
+		AD344FF3249FB5D600E839DC /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FF2249FB5D600E839DC /* ImageCollectionViewCell.m */; };
+		AD344FF6249FB94200E839DC /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FF5249FB94200E839DC /* CustomTableViewCell.m */; };
+		AD345000249FD21D00E839DC /* AdditionalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD344FFF249FD21D00E839DC /* AdditionalInfoViewController.m */; };
+		AD34500324A20D4400E839DC /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD34500224A20D4400E839DC /* ModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +65,28 @@
 		AD344FCA249F9BAD00E839DC /* Task-6UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Task-6UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD344FCE249F9BAD00E839DC /* Task_6UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task_6UITests.m; sourceTree = "<group>"; };
 		AD344FD0249F9BAD00E839DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD344FDC249F9BEE00E839DC /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		AD344FDD249F9BEE00E839DC /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AD344FDF249F9C2300E839DC /* UIColor+HexToUIColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexToUIColor.h"; sourceTree = "<group>"; };
+		AD344FE0249F9C2300E839DC /* UIColor+HexToUIColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexToUIColor.m"; sourceTree = "<group>"; };
+		AD344FE2249F9C9800E839DC /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		AD344FE3249F9C9800E839DC /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		AD344FE5249F9D7100E839DC /* TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		AD344FE6249F9D7100E839DC /* TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		AD344FE8249F9F8100E839DC /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		AD344FE9249F9F8100E839DC /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		AD344FEB249F9F9400E839DC /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		AD344FEC249F9F9400E839DC /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		AD344FEE249F9FA700E839DC /* RSSchoolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSchoolViewController.h; sourceTree = "<group>"; };
+		AD344FEF249F9FA700E839DC /* RSSchoolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSchoolViewController.m; sourceTree = "<group>"; };
+		AD344FF1249FB5D500E839DC /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		AD344FF2249FB5D600E839DC /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		AD344FF4249FB94200E839DC /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		AD344FF5249FB94200E839DC /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		AD344FFE249FD21D00E839DC /* AdditionalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdditionalInfoViewController.h; sourceTree = "<group>"; };
+		AD344FFF249FD21D00E839DC /* AdditionalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdditionalInfoViewController.m; sourceTree = "<group>"; };
+		AD34500124A20D4400E839DC /* ModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		AD34500224A20D4400E839DC /* ModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +148,20 @@
 				AD344FB5249F9BAC00E839DC /* LaunchScreen.storyboard */,
 				AD344FB8249F9BAC00E839DC /* Info.plist */,
 				AD344FB9249F9BAC00E839DC /* main.m */,
+				AD344FF8249FCD4800E839DC /* Cells */,
+				AD344FF7249FCD0D00E839DC /* Tabs */,
+				AD344FDC249F9BEE00E839DC /* HomeViewController.h */,
+				AD344FDD249F9BEE00E839DC /* HomeViewController.m */,
+				AD344FDF249F9C2300E839DC /* UIColor+HexToUIColor.h */,
+				AD344FE0249F9C2300E839DC /* UIColor+HexToUIColor.m */,
+				AD344FE2249F9C9800E839DC /* NavigationController.h */,
+				AD344FE3249F9C9800E839DC /* NavigationController.m */,
+				AD344FE5249F9D7100E839DC /* TabBarViewController.h */,
+				AD344FE6249F9D7100E839DC /* TabBarViewController.m */,
+				AD344FFE249FD21D00E839DC /* AdditionalInfoViewController.h */,
+				AD344FFF249FD21D00E839DC /* AdditionalInfoViewController.m */,
+				AD34500124A20D4400E839DC /* ModalViewController.h */,
+				AD34500224A20D4400E839DC /* ModalViewController.m */,
 			);
 			path = "Task-6";
 			sourceTree = "<group>";
@@ -135,6 +182,30 @@
 				AD344FD0249F9BAD00E839DC /* Info.plist */,
 			);
 			path = "Task-6UITests";
+			sourceTree = "<group>";
+		};
+		AD344FF7249FCD0D00E839DC /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				AD344FE8249F9F8100E839DC /* InfoViewController.h */,
+				AD344FE9249F9F8100E839DC /* InfoViewController.m */,
+				AD344FEB249F9F9400E839DC /* GalleryViewController.h */,
+				AD344FEC249F9F9400E839DC /* GalleryViewController.m */,
+				AD344FEE249F9FA700E839DC /* RSSchoolViewController.h */,
+				AD344FEF249F9FA700E839DC /* RSSchoolViewController.m */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		AD344FF8249FCD4800E839DC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AD344FF4249FB94200E839DC /* CustomTableViewCell.h */,
+				AD344FF5249FB94200E839DC /* CustomTableViewCell.m */,
+				AD344FF1249FB5D500E839DC /* ImageCollectionViewCell.h */,
+				AD344FF2249FB5D600E839DC /* ImageCollectionViewCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +338,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD344FE1249F9C2300E839DC /* UIColor+HexToUIColor.m in Sources */,
+				AD344FF0249F9FA700E839DC /* RSSchoolViewController.m in Sources */,
+				AD34500324A20D4400E839DC /* ModalViewController.m in Sources */,
 				AD344FAF249F9BA900E839DC /* ViewController.m in Sources */,
+				AD344FEA249F9F8100E839DC /* InfoViewController.m in Sources */,
 				AD344FA9249F9BA900E839DC /* AppDelegate.m in Sources */,
+				AD345000249FD21D00E839DC /* AdditionalInfoViewController.m in Sources */,
 				AD344FBA249F9BAC00E839DC /* main.m in Sources */,
+				AD344FE7249F9D7100E839DC /* TabBarViewController.m in Sources */,
+				AD344FDE249F9BEE00E839DC /* HomeViewController.m in Sources */,
 				AD344FAC249F9BA900E839DC /* SceneDelegate.m in Sources */,
+				AD344FE4249F9C9800E839DC /* NavigationController.m in Sources */,
+				AD344FF3249FB5D600E839DC /* ImageCollectionViewCell.m in Sources */,
+				AD344FED249F9F9400E839DC /* GalleryViewController.m in Sources */,
+				AD344FF6249FB94200E839DC /* CustomTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +522,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C46KC9Y2PT;
 				INFOPLIST_FILE = "Task-6/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +540,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C46KC9Y2PT;
 				INFOPLIST_FILE = "Task-6/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
