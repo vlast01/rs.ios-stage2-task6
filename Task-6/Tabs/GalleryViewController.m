@@ -106,10 +106,19 @@
     
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"  forIndexPath:indexPath];
     PHAsset *asset = _assetsFetchResults[indexPath.item];
-    
+    int type = (int)asset.mediaType;
+   
     [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage *result, NSDictionary *info)
      {
-        cell.imageView.image = result;
+        if (type == 1 || type == 2){
+            cell.imageView.image = result;
+        }
+        else if (type == 3) {
+            cell.imageView.image = [UIImage imageNamed:@"musicIcon"];
+        }
+        else {
+            cell.imageView.image = [UIImage imageNamed:@"otherIcon"];
+        }
         
     }];
     
