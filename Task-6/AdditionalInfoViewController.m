@@ -207,9 +207,15 @@
     }
     //if iPad
     else {
-        // Change Rect to position Popover
-        UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:controller];
-        [popup presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/4, 0, 0)inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        controller.modalPresentationStyle = UIModalPresentationPopover;
+        [self presentViewController:controller animated:true completion:nil];
+        UIPopoverPresentationController *presentationController =
+        [controller popoverPresentationController];
+        presentationController.permittedArrowDirections =
+        UIPopoverArrowDirectionLeft | UIPopoverArrowDirectionRight;
+        presentationController.sourceView = self.view;
+        presentationController.sourceRect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/4, 0, 0);
+       
     }
     
     
