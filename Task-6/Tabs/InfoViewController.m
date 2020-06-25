@@ -77,31 +77,56 @@
     PHAsset *asset = _assetsFetchResults[indexPath.item];
     cell.imageView.contentMode = UIViewContentModeTop;
     
+        cell.type = (int)asset.mediaType;
+    
     
     [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(1000, 1000) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage *result, NSDictionary *info)
      {
-        cell.customImageView.image = result;
-        cell.assetImage = result;
+        if (cell.type == 1 || cell.type == 2){
+            
+            cell.customImageView.image = result;
+            cell.assetImage = result;
+
+        }
+        else if (cell.type == 3) {
+             cell.customImageView.image = [UIImage imageNamed:@"musicIcon"];
+            cell.assetImage = [UIImage imageNamed:@"musicIcon"];
+            
+        }
+        else {
+            cell.customImageView.image = [UIImage imageNamed:@"otherIcon"];
+            cell.assetImage = [UIImage imageNamed:@"otherIcon"];
+        }
+    
     }];
     
     cell.mainLabel.text = [asset valueForKey:@"filename"];
-    cell.infoLabel.text = [NSString stringWithFormat:@"%lux%lu",(unsigned long)asset.pixelWidth, (unsigned long)asset.pixelHeight];
-    cell.type = (int)asset.mediaType;
-    
+
     if (cell.type == 1) {
         cell.typeImageView.image = [UIImage imageNamed:@"image"];
+        cell.infoLabel.text = [NSString stringWithFormat:@"%lux%lu",(unsigned long)asset.pixelWidth, (unsigned long)asset.pixelHeight];
     }
     else if (cell.type == 2){
         cell.typeImageView.image = [UIImage imageNamed:@"video"];
+        
+        NSString *time = [self timeConverter:(int)asset.duration];
+        cell.infoLabel.text = [NSString stringWithFormat:@"%lux%lu %@",(unsigned long)asset.pixelWidth, (unsigned long)asset.pixelHeight, time];
     }
     else if (cell.type == 3){
+        NSString *time = [self timeConverter:(int)asset.duration];
         cell.typeImageView.image = [UIImage imageNamed:@"audio"];
+        cell.infoLabel.text = [NSString stringWithString:time];
     }
-    else  cell.typeImageView.image = [UIImage imageNamed:@"other"];
+    else  {
+        cell.typeImageView.image = [UIImage imageNamed:@"other"];
+        cell.infoLabel.text = @"";
+    }
     
     
     cell.creationDate = asset.creationDate;
     cell.modificationDate = asset.modificationDate;
+    
+    
     
     return cell;
     
@@ -133,6 +158,21 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+}
+
+-(NSString *)timeConverter:(int)time{
+    int minutes = time / 60;
+    int sec = time - minutes * 60;
+    NSMutableString *result = [NSMutableString new];
+    if (minutes<10)
+        [result appendFormat:@"0%d:", minutes];
+    else  [result appendFormat:@"%d:", minutes];
+    
+        if (sec < 10) {
+            [result appendFormat:@"0%d", sec];
+        }
+        else [result appendFormat:@"%d", sec];
+    return result;
 }
 
 

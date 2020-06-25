@@ -12,10 +12,6 @@
 
 @interface CustomTableViewCell ()
 
-//@property (strong, nonatomic) UIImageView *customImageView;
-//@property(nonatomic,strong) UILabel *mainLabel;
-
-
 @end
 
 

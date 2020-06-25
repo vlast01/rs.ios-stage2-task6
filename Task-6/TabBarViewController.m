@@ -53,7 +53,7 @@
     
      [self setSelectedIndex:1];
 
-    tabBar.tintColor = [UIColor blackColor];
+    tabBar.tintColor = [UIColor colorWithHex:0x101010];
 
 }
 

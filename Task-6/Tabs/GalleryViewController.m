@@ -11,6 +11,8 @@
 #import "UIColor+HexToUIColor.h"
 #import <Photos/Photos.h>
 #import "ModalViewController.h"
+#import "AVKit/AVKit.h"
+#import "AVFoundation/AVFoundation.h"
 
 @interface GalleryViewController ()
 
@@ -30,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHex:0xFFFFFF];
     
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(50, 50);
@@ -55,15 +57,25 @@
     
     
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor colorWithHex:0xFFFFFF];
     [self.view addSubview:self.collectionView];
     
-    [NSLayoutConstraint activateConstraints:@[
-        [self.collectionView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:5],
-        [self.collectionView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-5],
-        [self.collectionView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:5],
-        [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
-    ]];
+    if (@available(iOS 11.0, *)) {
+        [NSLayoutConstraint activateConstraints:@[
+            [self.collectionView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:5],
+            [self.collectionView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-5],
+            [self.collectionView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:5],
+            [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+        ]];
+    } else {
+        [NSLayoutConstraint activateConstraints:@[
+            [self.collectionView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:5],
+            [self.collectionView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-5],
+            [self.collectionView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:5],
+            [self.collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+        ]];
+    }
+    
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -162,8 +174,30 @@
     ImageCollectionViewCell *cell = [ImageCollectionViewCell new];
     cell = [collectionView cellForItemAtIndexPath:indexPath];
     UIViewController *viewController = [[ModalViewController alloc] initWithImage:cell.imageView.image];
-    [self presentViewController:viewController animated:YES completion:nil];
+   // [self presentViewController:viewController animated:YES completion:nil];
+    
+    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    
+    if (asset.mediaType == PHAssetMediaTypeVideo) {
+           PHVideoRequestOptions *videoOptions = [PHVideoRequestOptions new];
+             [[PHImageManager defaultManager] requestPlayerItemForVideo:asset options:videoOptions resultHandler:^(AVPlayerItem *playerItem, NSDictionary *info) {
+                 AVPlayer *player = [[AVPlayer alloc]initWithPlayerItem:playerItem];
+                 AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+                 playerViewController.player = player;
+                 [self presentViewController:playerViewController animated:YES completion:^{
+                     [playerViewController.player play];
+                 }];
+             }];
+       } else {
+               [self presentViewController:viewController animated:YES completion:nil];
+       }
 }
+
+    
+    
+    
+    
+
 
 
 

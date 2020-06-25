@@ -35,21 +35,21 @@
     self.tabBarController.tabBar.hidden = YES;
     
     self.view.backgroundColor = [UIColor colorWithHex:0xFFFFFF];
-
+    
     self.scrollView = [UIScrollView new];
     [self.view addSubview:self.scrollView];
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [NSLayoutConstraint activateConstraints:@[
-           [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
-           [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-           [self.scrollView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-           [self.scrollView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
-       ]];
+        [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.scrollView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.scrollView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
+    ]];
     
     
     self.contentView = [UIView new];
-     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.scrollView addSubview: self.contentView];
     
     
@@ -60,10 +60,10 @@
         [ self.contentView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor],
     ]];
     
-
+    
     self.imageView = [UIImageView new];
     self.resizedImage = [self resizeImage:self.image newWidth:self.view.frame.size.width];
-
+    
     self.imageView.image = self.resizedImage;
     
     self.stackView = [[UIStackView alloc]init];
@@ -74,12 +74,12 @@
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
-       [df setDateFormat:@"HH:mm:ss dd.MM.yyyy"];
-       NSString *creationDate = [df stringFromDate:self.creationCellDate];
-       NSString *modificationDate = [df stringFromDate:self.modificationCellDate];
+    [df setDateFormat:@"HH:mm:ss dd.MM.yyyy"];
+    NSString *creationDate = [df stringFromDate:self.creationCellDate];
+    NSString *modificationDate = [df stringFromDate:self.modificationCellDate];
     
-
-  
+    
+    
     self.creationDateLabel = [UILabel new];
     self.modificationDateLabel = [UILabel new];
     self.typeLabel = [UILabel new];
@@ -90,8 +90,8 @@
     
     NSMutableAttributedString *dataFieldText = [[NSMutableAttributedString alloc] initWithAttributedString: self.creationDateLabel.attributedText];
     [dataFieldText addAttribute:NSForegroundColorAttributeName
-                 value:[UIColor colorWithHex:0x707070]
-                 range:NSMakeRange(0, 13)];
+                          value:[UIColor colorWithHex:0x707070]
+                          range:NSMakeRange(0, 13)];
     [self.creationDateLabel setAttributedText: dataFieldText];
     
     
@@ -103,8 +103,8 @@
     
     NSMutableAttributedString *modificationFieldText = [[NSMutableAttributedString alloc] initWithAttributedString: self.modificationDateLabel.attributedText];
     [modificationFieldText addAttribute:NSForegroundColorAttributeName
-                 value:[UIColor colorWithHex:0x707070]
-                 range:NSMakeRange(0, 18)];
+                                  value:[UIColor colorWithHex:0x707070]
+                                  range:NSMakeRange(0, 18)];
     [self.modificationDateLabel setAttributedText: modificationFieldText];
     
     
@@ -127,19 +127,19 @@
     
     NSMutableAttributedString *typeFieldText = [[NSMutableAttributedString alloc] initWithAttributedString: self.typeLabel.attributedText];
     [typeFieldText addAttribute:NSForegroundColorAttributeName
-                 value:[UIColor colorWithHex:0x707070]
-                 range:NSMakeRange(0, 4)];
+                          value:[UIColor colorWithHex:0x707070]
+                          range:NSMakeRange(0, 4)];
     [self.typeLabel setAttributedText: typeFieldText];
     
     
     
-       self.textStackView = [[UIStackView alloc]init];
-       self.textStackView.axis = UILayoutConstraintAxisVertical;
-       self.textStackView.distribution = UIStackViewDistributionEqualSpacing;
-       self.textStackView.alignment = UIStackViewAlignmentLeading;
-       self.textStackView.spacing = 10;
-       self.textStackView.translatesAutoresizingMaskIntoConstraints = false;
-      
+    self.textStackView = [[UIStackView alloc]init];
+    self.textStackView.axis = UILayoutConstraintAxisVertical;
+    self.textStackView.distribution = UIStackViewDistributionEqualSpacing;
+    self.textStackView.alignment = UIStackViewAlignmentLeading;
+    self.textStackView.spacing = 10;
+    self.textStackView.translatesAutoresizingMaskIntoConstraints = false;
+    
     
     [self.textStackView.widthAnchor constraintEqualToConstant:self.image.size.width - 30].active = true;
     
@@ -147,7 +147,7 @@
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     self.button.backgroundColor = [UIColor colorWithHex:0xF9CC78];
     [self.button setTitle:@"Share" forState:UIControlStateNormal];
-    [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.button setTitleColor:[UIColor colorWithHex:0x101010] forState:UIControlStateNormal];
     [self.button.titleLabel setFont:[UIFont systemFontOfSize:20 weight: UIFontWeightMedium]];
     self.button.layer.cornerRadius = 25;
     self.button.clipsToBounds = YES;
@@ -157,86 +157,29 @@
     [self.button.heightAnchor constraintEqualToConstant:55].active = true;
     [self.button.widthAnchor constraintEqualToConstant:self.view.frame.size.width - self.view.frame.size.width  /4  ].active = true;
     [self.button addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
-
+    
     
     
     [self.stackView addArrangedSubview:self.imageView];
-       [self.stackView addArrangedSubview:self.textStackView];
-       [self.stackView addArrangedSubview:self.button];
+    [self.stackView addArrangedSubview:self.textStackView];
+    [self.stackView addArrangedSubview:self.button];
     
-     [ self.contentView addSubview:self.stackView];
-    
-         
-         [NSLayoutConstraint activateConstraints:@[
-             [self.stackView.topAnchor constraintEqualToAnchor: self.contentView.topAnchor constant: 15],
-             [self.stackView.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:-15],
-             [self.stackView.leftAnchor constraintEqualToAnchor: self.contentView.leftAnchor constant:15],
-             [self.stackView.bottomAnchor constraintEqualToAnchor: self.contentView.bottomAnchor constant:-15],
-             [self.stackView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor constant: - 30],
-         ]];
+    [ self.contentView addSubview:self.stackView];
     
     
-   
+    [NSLayoutConstraint activateConstraints:@[
+        [self.stackView.topAnchor constraintEqualToAnchor: self.contentView.topAnchor constant: 15],
+        [self.stackView.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:-15],
+        [self.stackView.leftAnchor constraintEqualToAnchor: self.contentView.leftAnchor constant:15],
+        [self.stackView.bottomAnchor constraintEqualToAnchor: self.contentView.bottomAnchor constant:-15],
+        [self.stackView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor constant: - 30],
+    ]];
     
-     
-//    NSMutableAttributedString *dataFieldText = [[NSMutableAttributedString alloc] initWithAttributedString: self.creationDateLabel.attributedText];
-////    [dataFieldText addAttribute:NSForegroundColorAttributeName
-////                 value:[UIColor redColor]
-////                 range:NSMakeRange(0, 13)];
-//
-//    [dataFieldText addAttribute:NSForegroundColorAttributeName
-//                          value:[UIColor colorWithHex:0x707070] range:NSMakeRange(0, 13)];
-//    [self.creationDateLabel setAttributedText: dataFieldText];
-//
-//      // self.typeLabel.textColor = [UIColor colorWithHex:0x707070];
-//
-//    self.creationDateLabel.text =  [self.creationDateLabel.text stringByAppendingString:creationDate];
-    
-    
-          [self.textStackView addArrangedSubview:self.creationDateLabel];
-          [self.textStackView addArrangedSubview:self.modificationDateLabel];
-          [self.textStackView addArrangedSubview:self.typeLabel];
+    [self.textStackView addArrangedSubview:self.creationDateLabel];
+    [self.textStackView addArrangedSubview:self.modificationDateLabel];
+    [self.textStackView addArrangedSubview:self.typeLabel];
     
     [self.button addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-//    self.resizedHorizontalImage = [self resizeImage:self.image newWidth:self.view.frame.size.height];
-//
-//    self.horizontalImageView = [UIImageView new];
-//       self.horizontalImageView.image = self.resizedHorizontalImage;
-//
-//
-//      self.horizontalStackView = [[UIStackView alloc]init];
-//      self.horizontalStackView.axis = UILayoutConstraintAxisVertical;
-//      self.horizontalStackView.distribution = UIStackViewDistributionEqualSpacing;
-//      self.horizontalStackView.alignment = UIStackViewAlignmentCenter;
-//      self.horizontalStackView.spacing = 30;
-//      self.horizontalStackView.translatesAutoresizingMaskIntoConstraints = NO;
-//
-//    [self.horizontalStackView addArrangedSubview:self.horizontalImageView];
-//   //    [self.horizontalStackView addArrangedSubview:self.textStackView];
-//     //  [self.horizontalStackView addArrangedSubview:self.button];
-//
-//     [ self.contentView addSubview:self.horizontalStackView];
-
-
-//         [NSLayoutConstraint activateConstraints:@[
-//            // [self.horizontalStackView.topAnchor constraintEqualToAnchor: self.stackView.bottomAnchor constant: 15],
-//             [self.horizontalStackView.topAnchor constraintEqualToAnchor: self.contentView.topAnchor constant: 15],
-//             [self.horizontalStackView.rightAnchor constraintEqualToAnchor: self.contentView.rightAnchor constant:-15],
-//             [self.horizontalStackView.leftAnchor constraintEqualToAnchor: self.contentView.leftAnchor constant:15],
-//             [self.horizontalStackView.bottomAnchor constraintEqualToAnchor: self.contentView.bottomAnchor constant:-15],
-//             [self.horizontalStackView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor constant: - 30],
-//             //        [self.mainStackView.heightAnchor constraintEqualToAnchor:self.scrollContentView.heightAnchor],
-//         ]];
-    
-//    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-//        self.stackView.hidden = YES;
-//    }
-//    else {
-//        self.horizontalImageView.hidden = YES;
-//    }
-//
     
 }
 
@@ -246,7 +189,7 @@
         self.creationCellDate = creationDate;
         self.modificationCellDate = modificationDate;
         self.image = assetImage;
-        self.type = mediaType; 
+        self.type = mediaType;
     }
     return self;
     
@@ -256,18 +199,8 @@
 
 -(void) share{
     
-//    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.image] applicationActivities:nil];
-//    activityViewController.excludedActivityTypes = @[UIActivityTypeCopyToPasteboard];
-//    [self presentViewController:activityViewController animated:YES completion:nil];
-//
-//    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
-//    // iOS8
-//     activityViewController.popoverPresentationController.sourceView =
-//    self.view;
-//     }
-    
     UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[self.image] applicationActivities:nil];
-
+    
     //if iPhone
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self presentViewController:controller animated:YES completion:nil];
@@ -278,37 +211,11 @@
         UIPopoverController *popup = [[UIPopoverController alloc] initWithContentViewController:controller];
         [popup presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/4, 0, 0)inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
-
+    
     
 }
 
 
-
--(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-    NSLog(@"%f",self.view.frame.size.width);
-    
-//   self.resizedImage = [self resizeImage:self.image newWidth:self.view.frame.size.height];
-//    self.imageView = [[UIImageView alloc] initWithImage:self.resizedImage];
-//    [self.stackView removeFromSuperview];
-//    self.stackView = [UIStackView new];
-//    [self.stackView addArrangedSubview:self.imageView];
-//    [self.stackView addArrangedSubview:self.textStackView];
-//    [self.stackView addArrangedSubview:self.button];
-//    [self.contentView addSubview:self.stackView];
-    
-//    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-//        self.stackView.hidden = YES;
-//        NSLog(@"LANDSCAPE");
-//        self.horizontalImageView.hidden = NO;
-//
-//    }
-//    else {
-//        self.horizontalImageView.hidden = YES;
-//        NSLog(@"PORTRAIT");
-//        self.stackView.hidden = NO;
- //   }
-    
-}
 
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -317,14 +224,14 @@
 
 
 - (UIImage *)resizeImage:(UIImage *)image newWidth:(CGFloat)newWidth {
-
+    
     double scale = newWidth / image.size.width;
     double newHeight = image.size.height * scale;
     UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
     [image drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return newImage;
 }
 

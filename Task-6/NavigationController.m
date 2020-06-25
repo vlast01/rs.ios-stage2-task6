@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.navigationBar.barTintColor = [UIColor colorWithHex:0xF9CC78];
     
-    self.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationBar.tintColor = [UIColor colorWithHex:0x101010];
     
     [[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:

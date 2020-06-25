@@ -14,6 +14,16 @@
 @interface RSSchoolViewController ()
 
 @property (nonatomic,strong)UIStackView *buttonStackView;
+@property (nonatomic, strong)CABasicAnimation *rectAnimation;
+@property (nonatomic, strong)CABasicAnimation* rotationAnimation;
+@property (nonatomic, strong)CABasicAnimation *pulseAnimation;
+@property (nonatomic, strong)CAShapeLayer *triangle;
+@property (nonatomic, strong)CAShapeLayer *circle;
+
+
+@property (nonatomic, strong)UIView *rect;
+
+//- (void)setNeedsLayoutRecursively;
 
 @end
 
@@ -51,7 +61,6 @@
     
     UIImageView *appleImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];;
     appleImage.translatesAutoresizingMaskIntoConstraints = NO;
-    //appleImage.backgroundColor = [UIColor redColor];
     appleImage.image = [UIImage imageNamed:@"apple"];
     appleImage.contentMode =UIViewContentModeScaleAspectFill;
     [infoView addSubview:appleImage];
@@ -74,15 +83,15 @@
     self.buttonStackView.distribution = UIStackViewDistributionFillEqually;
     
     
-    CAShapeLayer *circle = [CAShapeLayer layer];
+    self.circle = [CAShapeLayer layer];
     
-    [circle setPath:[[UIBezierPath bezierPathWithArcCenter:CGPointMake(0,0) radius:35 startAngle:0 endAngle:M_PI *  2 clockwise:YES] CGPath]];
+    [self.circle setPath:[[UIBezierPath bezierPathWithArcCenter:CGPointMake(0,0) radius:35 startAngle:0 endAngle:M_PI *  2 clockwise:YES] CGPath]];
     
-    circle.fillColor =[UIColor colorWithHex:0xEE686A].CGColor;
+    self.circle.fillColor =[UIColor colorWithHex:0xEE686A].CGColor;
     
     UIView *circleContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];;
-    [[circleContainer layer] addSublayer:circle];
-    [circle setPosition:circleContainer.center];
+    [[circleContainer layer] addSublayer:self.circle];
+    [self.circle setPosition:circleContainer.center];
     circleContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     UIView *circleView = [UIView new];
@@ -92,14 +101,13 @@
     circleView.translatesAutoresizingMaskIntoConstraints = NO;
     
     
-    UIView *rect = [[UIView alloc] initWithFrame:CGRectMake(0,0,70,70)];
-    rect.translatesAutoresizingMaskIntoConstraints = NO;
-    rect.backgroundColor = [UIColor colorWithHex:0x29C2D1];
+    self.rect = [[UIView alloc] initWithFrame:CGRectMake(0,0,70,70)];
+    self.rect.translatesAutoresizingMaskIntoConstraints = NO;
+    self.rect.backgroundColor = [UIColor colorWithHex:0x29C2D1];
     
     UIView *rectContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    rectContainer.backgroundColor = [UIColor redColor];
     rectContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    [rectContainer addSubview:rect];
+    [rectContainer addSubview:self.rect];
     
     UIView *rectView = [UIView new];
     rectView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -143,16 +151,16 @@
     [path addLineToPoint:(CGPoint){40.5, -23.3}];
     [path addLineToPoint:(CGPoint){0, 46.7}];
     
-    CAShapeLayer *triangle = [CAShapeLayer new];
-    triangle.fillColor = [UIColor colorWithHex:0x34C1A1].CGColor;
-    triangle.path = path.CGPath;
+    self.triangle = [CAShapeLayer new];
+    self.triangle.fillColor = [UIColor colorWithHex:0x34C1A1].CGColor;
+    self.triangle.path = path.CGPath;
     UIView *triangleView = [UIView new];
     triangleView.translatesAutoresizingMaskIntoConstraints = NO;
     
     UIView *triangleContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 81, 81)];
     triangleContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    [[triangleContainer layer] addSublayer:triangle];
-    [triangle setPosition:triangleContainer.center];
+    [[triangleContainer layer] addSublayer:self.triangle];
+    [self.triangle setPosition:triangleContainer.center];
     [triangleView addSubview:triangleContainer];
     
     [NSLayoutConstraint activateConstraints:@[
@@ -212,6 +220,7 @@
     
     [self.view addSubview:stackView];
     
+    
     [NSLayoutConstraint activateConstraints:@[
         [phoneLabel.centerYAnchor constraintEqualToAnchor:infoView.centerYAnchor constant:0],
         [nameLabel.centerYAnchor constraintEqualToAnchor:infoView.centerYAnchor constant:-25],
@@ -219,23 +228,28 @@
         
         [appleImage.centerYAnchor constraintEqualToAnchor:infoView.centerYAnchor constant:0],
         [appleImage.centerXAnchor constraintEqualToAnchor:infoView.centerXAnchor constant:-80],
-        [appleImage.widthAnchor constraintEqualToConstant:80],
-        [appleImage.heightAnchor constraintEqualToConstant:80],
+        [appleImage.widthAnchor constraintEqualToConstant:70],
+        [appleImage.heightAnchor constraintEqualToConstant:70],
         
         [gitButton.centerYAnchor constraintEqualToAnchor:gitButtonContainer.centerYAnchor],
-        [gitButton.leadingAnchor constraintEqualToAnchor:gitButton.trailingAnchor constant:-250],
+        //[gitButton.leadingAnchor constraintEqualToAnchor:gitButton.trailingAnchor constant:-250],
+        [gitButton.leadingAnchor constraintEqualToAnchor:gitButtonContainer.leadingAnchor constant:10],
+        [gitButton.trailingAnchor constraintEqualToAnchor:gitButtonContainer.trailingAnchor constant:-10],
+        
         [gitButton.centerXAnchor constraintEqualToAnchor:gitButtonContainer.centerXAnchor],
         [gitButton.heightAnchor constraintEqualToConstant:55],
         
         [startButton.heightAnchor constraintEqualToConstant:55],
-        [startButton.widthAnchor constraintEqualToConstant:250],
+        //[startButton.widthAnchor constraintEqualToConstant:250],
+        
+        [startButton.leadingAnchor constraintEqualToAnchor:startButtonContainer.leadingAnchor constant:10],
+        [startButton.trailingAnchor constraintEqualToAnchor:startButtonContainer.trailingAnchor constant:-10],
+        
         [startButton.centerXAnchor constraintEqualToAnchor:startButtonContainer.centerXAnchor],
         [startButton.centerYAnchor constraintEqualToAnchor:startButtonContainer.centerYAnchor],
-        
-        [stackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
-        [stackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
-        [stackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:50],
-        [stackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-50],
+
+        [stackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:self.view.frame.size.width*0.1],
+        [stackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-self.view.frame.size.width*0.1],
         
         [phoneLabel.leadingAnchor constraintEqualToAnchor:appleImage.trailingAnchor constant:20],
         [nameLabel.leadingAnchor constraintEqualToAnchor:appleImage.trailingAnchor constant:20],
@@ -248,44 +262,63 @@
         
     ]];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    CABasicAnimation *rectAnimation = [CABasicAnimation animation];
-    rectAnimation.keyPath = @"position.y";
-    rectAnimation.fromValue = @(rect.frame.size.height/10+rect.frame.size.height/2);
-    rectAnimation.toValue = @(-rect.frame.size.height/10+rect.frame.size.height/2);
-    rectAnimation.duration = 1;
-    rectAnimation.autoreverses=YES;
-    rectAnimation.repeatCount = HUGE_VALF;
-    
-    [[rect layer] addAnimation:rectAnimation forKey:@"animatePosition"];
-    
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
-    rotationAnimation.duration = 1;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount =  HUGE_VALF;
-    
-    [triangle addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     
-    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    pulseAnimation.duration = 1;
-    pulseAnimation.fromValue = [NSNumber numberWithFloat:1.1];
-    pulseAnimation.toValue = [NSNumber numberWithFloat:0.9];
-    pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    pulseAnimation.autoreverses = YES;
-    pulseAnimation.repeatCount = HUGE_VALF;
     
-    [circle addAnimation:pulseAnimation forKey:nil];
+    if (@available(iOS 11.0, *)) {
+        [NSLayoutConstraint activateConstraints:@[
+          
+            [stackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+            [stackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
     
-    NSLog(@"%@", [[UIDevice currentDevice] name]);
+            
+        ]];
+    } else {
+        [NSLayoutConstraint activateConstraints:@[
+            
+            [stackView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:30],
+            [stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-60],
+         
+        ]];
+    }
+    
+    self.view.backgroundColor = [UIColor colorWithHex:0xFFFFFF];
+    
+    self.rectAnimation= [CABasicAnimation animation];
+    self.rectAnimation.keyPath = @"position.y";
+    self.rectAnimation.fromValue = @(self.rect.frame.size.height/10+self.rect.frame.size.height/2);
+    self.rectAnimation.toValue = @(-self.rect.frame.size.height/10+self.rect.frame.size.height/2);
+    self.rectAnimation.duration = 1;
+    self.rectAnimation.autoreverses=YES;
+    self.rectAnimation.repeatCount = HUGE_VALF;
+    self.rectAnimation.removedOnCompletion = NO;
+    
+    [[self.rect layer] addAnimation:self.rectAnimation forKey:@"animatePosition"];
+    
+    self.rotationAnimation = [CABasicAnimation animation];
+     self.rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+     self.rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+     self.rotationAnimation.duration = 1;
+     self.rotationAnimation.cumulative = YES;
+     self.rotationAnimation.repeatCount =  HUGE_VALF;
+    self.rotationAnimation.removedOnCompletion = NO;
+    
+    [self.triangle addAnimation: self.rotationAnimation forKey:@"rotationAnimation"];
+    
+    
+    self.pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    self.pulseAnimation.duration = 1;
+    self.pulseAnimation.fromValue = [NSNumber numberWithFloat:1.1];
+    self.pulseAnimation.toValue = [NSNumber numberWithFloat:0.9];
+    self.pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    self.pulseAnimation.autoreverses = YES;
+    self.pulseAnimation.repeatCount = HUGE_VALF;
+    self.pulseAnimation.removedOnCompletion = NO;
+    
+    [self.circle addAnimation:self.pulseAnimation forKey:nil];
     
     [gitButton addTarget:self action:@selector(gitButton) forControlEvents:UIControlEventTouchUpInside];
     [startButton addTarget:self action:@selector(startButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     
 }
 
@@ -302,6 +335,7 @@
         
         
     }
+
     
 }
 
@@ -319,7 +353,13 @@
     
 }
 
-
+-(void)viewDidAppear:(BOOL)animated {
+   
+    [[self.rect layer] addAnimation:self.rectAnimation forKey:@"animatePosition"];
+    [self.triangle addAnimation: self.rotationAnimation forKey:@"rotationAnimation"];
+    [self.circle addAnimation:self.pulseAnimation forKey:nil];
+    
+}
 
 
 

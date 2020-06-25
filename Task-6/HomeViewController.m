@@ -38,14 +38,10 @@
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.distribution = UIStackViewDistributionFillEqually;
-    
-   // stackView.backgroundColor = [UIColor lightGrayColor];
-  
 
     
     
     CAShapeLayer *circle = [CAShapeLayer layer];
-   // [circle setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 70, 70)] CGPath]];
     
     [circle setPath:[[UIBezierPath bezierPathWithArcCenter:CGPointMake(0,0) radius:35 startAngle:0 endAngle:M_PI *  2 clockwise:YES] CGPath]];
     
@@ -68,13 +64,14 @@
     rect.backgroundColor = [UIColor colorWithHex:0x29C2D1];
     
     UIView *rectContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    rectContainer.backgroundColor = [UIColor redColor];
     rectContainer.translatesAutoresizingMaskIntoConstraints = NO;
     [rectContainer addSubview:rect];
     
     UIView *rectView = [UIView new];
     rectView.translatesAutoresizingMaskIntoConstraints = NO;
     [rectView addSubview:rectContainer];
+    
+    
     
     
     UIBezierPath *path = [UIBezierPath new];
@@ -124,28 +121,33 @@
     [self.view addSubview:stackView];
     
     
-    
-
     [NSLayoutConstraint activateConstraints:@[
-        [label.centerYAnchor constraintEqualToAnchor:labelView.centerYAnchor],
-        [button.centerYAnchor constraintEqualToAnchor:buttonView.centerYAnchor],
-        [button.leadingAnchor constraintEqualToAnchor:button.trailingAnchor constant:-300],
-        [button.centerXAnchor constraintEqualToAnchor:buttonView.centerXAnchor],
-        [stackView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:50],
-        [stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-50],
-        [stackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:50],
-        [stackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-50],
-        [button.topAnchor constraintEqualToAnchor:button.bottomAnchor constant:-55],
-        [label.centerXAnchor constraintEqualToAnchor:stackView.centerXAnchor],
-        
+            [label.centerYAnchor constraintEqualToAnchor:labelView.centerYAnchor],
+            [button.centerYAnchor constraintEqualToAnchor:buttonView.centerYAnchor],
+            [button.leadingAnchor constraintEqualToAnchor:button.trailingAnchor constant:-300],
+            [button.centerXAnchor constraintEqualToAnchor:buttonView.centerXAnchor],
+            [stackView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:0],
+            [stackView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:0],
+            [stackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:self.view.frame.size.width*0.1],
+            [stackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-self.view.frame.size.width*0.1],
+            [button.topAnchor constraintEqualToAnchor:button.bottomAnchor constant:-55],
+            [label.centerXAnchor constraintEqualToAnchor:stackView.centerXAnchor],
+        ]];
+    
+if (@available(iOS 13.0, *)) {
+    [NSLayoutConstraint activateConstraints:@[
+       
         [triangleContainer.centerXAnchor constraintEqualToAnchor:triangleView.centerXAnchor constant:-40],
         [circleContainer.centerXAnchor constraintEqualToAnchor:circleView.centerXAnchor constant:-35],
-        
         [rectContainer.centerXAnchor constraintEqualToAnchor:rectView.centerXAnchor constant:-35]
- 
-    ]];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    ]];
+}
+else{
+    
+}
+
+    self.view.backgroundColor = [UIColor colorWithHex:0xFFFFFF];
     
     [button addTarget:self action:@selector(changeVC) forControlEvents:UIControlEventTouchUpInside];
     
@@ -158,6 +160,7 @@
     rectAnimation.duration = 1;
     rectAnimation.autoreverses=YES;
     rectAnimation.repeatCount = HUGE_VALF;
+    rectAnimation.removedOnCompletion = NO;
 
     [[rect layer] addAnimation:rectAnimation forKey:@"animatePosition"];
     
@@ -170,6 +173,7 @@
     rotationAnimation.duration = 1;
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount =  HUGE_VALF;
+    rotationAnimation.removedOnCompletion = NO;
 
     [triangle addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
@@ -182,22 +186,16 @@
     pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     pulseAnimation.autoreverses = YES;
     pulseAnimation.repeatCount = HUGE_VALF;
+    pulseAnimation.removedOnCompletion = NO;
     
     [circle addAnimation:pulseAnimation forKey:nil];
-    
- //   rectView.backgroundColor = [UIColor blackColor];
-  //  rect.backgroundColor = [UIColor greenColor];
-    
-    
+
     
 }
 
 - (void)changeVC{
     
-//    UIViewController *tabBarController = [TabBarViewController new];
-//
-//    UINavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:tabBarController];;
-//    navigationController.navigationBar.hidden = YES;
+
     
     UITabBarController *tabBarController = [TabBarViewController new];
     
